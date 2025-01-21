@@ -27,6 +27,7 @@ contract Marketplace {
         emit ProductListed(productCount, _name, _price, msg.sender);
     }
 
+
     // Buy a product
     function buyProduct(uint _id) public payable {
         Product storage product = products[_id];
@@ -34,7 +35,7 @@ contract Marketplace {
         // Ensure sufficient funds for product price and transaction fee
         require(msg.value >= product.price, "Insufficient funds to cover product price and transaction fee");
         require(!product.sold, "Product already sold");
-                // Transfer payment to the farmer
+        // Transfer payment to the farmer
         product.farmer.transfer(msg.value);
 
         // Mark product as sold
